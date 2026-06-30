@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tide — Pôster Digital</title>
+<style>
+  :root{
+    --ink:#13262B; --teal:#0F6E7E; --teal-deep:#093C46; --teal-mid:#12707F;
+    --coral:#F0637C; --coral-deep:#D8485F; --mint:#CFE9E6; --sand:#FBF7F0;
+    --green:#54D6A4; --white:#ffffff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    background:#072d35; color:var(--white); overflow:hidden;
+  }
+  .stage{
+    position:relative; width:100vw; height:100vh; overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 12% 8%, #15808f 0%, rgba(21,128,143,0) 55%),
+      radial-gradient(120% 120% at 100% 100%, #0c4f5b 0%, rgba(12,79,91,0) 60%),
+      linear-gradient(135deg,#0b4651 0%, #0a3d47 60%, #082f37 100%);
+    display:flex; flex-direction:column;
+    padding:clamp(20px,3.2vh,46px) clamp(26px,3.4vw,64px);
+  }
+  /* decorative blobs */
+  .blob{position:absolute; border-radius:50%; filter:blur(6px); opacity:.18; pointer-events:none;}
+  .b1{width:34vw;height:34vw; right:-8vw; top:-10vw; background:radial-gradient(circle,#F0637C,transparent 70%); opacity:.30;}
+  .b2{width:26vw;height:26vw; left:-6vw; bottom:8vh; background:radial-gradient(circle,#54D6A4,transparent 70%); opacity:.22;}
+  /* waves */
+  .waves{position:absolute; left:0; right:0; bottom:0; width:200%; height:26vh; pointer-events:none;}
+  .waves svg{width:50%; height:100%; display:block; float:left;}
+  .wavewrap{position:absolute; left:0; bottom:0; width:100%; height:26vh; overflow:hidden; opacity:.5;}
+  .wavewrap.w2{opacity:.28; height:32vh;}
+  .wmove{animation:slide 18s linear infinite;}
+  .wmove2{animation:slide 26s linear infinite;}
+  @keyframes slide{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  header.top{display:flex; justify-content:space-between; align-items:center; z-index:3;}
+  .kicker{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .tag{
+    font-size:clamp(11px,1.15vw,16px); font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    padding:7px 14px; border-radius:999px; background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.18); color:#d8f3f0;
+  }
+  .tag.coral{background:rgba(240,99,124,.18); border-color:rgba(240,99,124,.45); color:#ffd7df;}
+  .evt{font-size:clamp(11px,1vw,15px); color:#a9cfcf; font-weight:600; letter-spacing:.04em; text-align:right;}
+
+  .main{flex:1; display:grid; grid-template-columns:1.35fr 1fr; gap:clamp(24px,2.6vw,56px); align-items:center; z-index:3;}
+
+  .wordmark{display:flex; align-items:baseline; gap:.06em; line-height:.9;}
+  .wordmark h1{
+    font-size:clamp(74px,12.5vw,210px); font-weight:800; letter-spacing:-.02em;
+    background:linear-gradient(180deg,#ffffff 0%, #cdeee9 100%); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .wordmark .dot{width:clamp(14px,1.7vw,26px); height:clamp(14px,1.7vw,26px); border-radius:50%; background:var(--coral); transform:translateY(-.15em); box-shadow:0 0 26px rgba(240,99,124,.8);}
+  .lead{font-size:clamp(18px,2.05vw,33px); font-weight:700; color:#eafaf7; margin-top:.35em; line-height:1.18; max-width:18ch;}
+  .lead b{color:#ffd7df;}
+  .sub{font-size:clamp(13px,1.35vw,21px); color:#bfe0df; margin-top:.7em; line-height:1.45; max-width:42ch;}
+  .sub b{color:#ffffff;}
+
+  .statline{display:flex; align-items:center; gap:clamp(14px,1.6vw,30px); margin-top:clamp(16px,2.4vh,30px);}
+  .stat{display:flex; flex-direction:column;}
+  .stat .num{font-size:clamp(40px,6.3vw,104px); font-weight:800; line-height:.95;}
+  .stat .num.good{color:var(--green);}
+  .stat .num.bad{color:#ff9aa6;}
+  .stat .lbl{font-size:clamp(11px,1.1vw,17px); color:#bfe0df; font-weight:600; margin-top:.35em; letter-spacing:.02em;}
+  .arrowbig{font-size:clamp(34px,4.4vw,74px); color:#eafaf7; opacity:.65; font-weight:300;}
+  .statcap{font-size:clamp(12px,1.15vw,18px); color:#9fd0ce; margin-top:.5em; font-weight:600;}
+
+  /* QR column */
+  .qrcol{display:flex; flex-direction:column; gap:clamp(14px,2vh,26px);}
+  .qrcard{
+    background:rgba(255,255,255,.97); color:var(--ink); border-radius:22px;
+    padding:clamp(14px,1.7vw,24px); display:grid; grid-template-columns:auto 1fr; gap:clamp(12px,1.4vw,22px);
+    align-items:center; box-shadow:0 18px 50px rgba(0,0,0,.32); position:relative; overflow:hidden;
+  }
+  .qrcard .qr{width:clamp(108px,11vw,188px); height:auto; aspect-ratio:1; border-radius:12px; display:block;}
+  .qrcard .qtxt h3{font-size:clamp(17px,1.75vw,29px); font-weight:800; line-height:1.08;}
+  .qrcard .qtxt p{font-size:clamp(12px,1.15vw,18px); color:#5a6b6e; margin-top:.35em; line-height:1.35;}
+  .qrcard .pill{display:inline-flex; align-items:center; gap:8px; margin-top:.7em; font-weight:800;
+    font-size:clamp(12px,1.15vw,17px); padding:8px 14px; border-radius:999px;}
+  .qrcard.proto{border-top:6px solid var(--coral);}
+  .qrcard.proto .pill{background:var(--coral); color:#fff;}
+  .qrcard.site{border-top:6px solid var(--teal);}
+  .qrcard.site .pill{background:var(--teal); color:#fff;}
+  .scan{animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.05);}}
+  .scanico{width:18px;height:18px; fill:currentColor;}
+
+  footer.bot{display:flex; justify-content:space-between; align-items:flex-end; z-index:3; gap:18px; flex-wrap:wrap;}
+  .authors{font-size:clamp(12px,1.2vw,18px); color:#cfe9e6;}
+  .authors b{color:#fff;}
+  .authors .aff{color:#8fc0bf; font-size:.86em; margin-top:.25em;}
+  .hint{display:flex; align-items:center; gap:10px; font-size:clamp(12px,1.2vw,18px); color:#eafaf7; font-weight:700;}
+  .hint svg{width:22px;height:22px; fill:#ffd7df;}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
+  <header class="top">
+    <div class="kicker">
+      <span class="tag coral">FemTech · HealthTech</span>
+      <span class="tag">IA aplicada (RAG)</span>
+      <span class="tag">Impacto social</span>
+    </div>
+    <div class="evt">Projeto de Inovação · UFMG<br>Sessão de Pôsteres</div>
+  </header>
+
+  <section class="main">
+    <div class="left">
+      <div class="wordmark"><h1>Tide</h1><span class="dot"></span></div>
+      <div class="lead">Menopausa Informada: um chatbot baseado em <b>evidências</b>.</div>
+      <div class="sub">Menopausa + desinformação + IA que alucina são um risco em saúde. O <b>Tide</b> é um chatbot em <b>português-BR</b> que responde com base em <b>diretrizes oficiais</b>, mostra as <b>fontes</b> e gera um <b>relatório clínico em PDF</b> para a consulta.</div>
+
+      <div class="statline">
+        <div class="stat"><span class="num bad">48%</span><span class="lbl">IA comum<br>(sem RAG)</span></div>
+        <div class="arrowbig">→</div>
+        <div class="stat"><span class="num good">93%</span><span class="lbl">Tide<br>(com RAG)</span></div>
+        <div class="statcap">respostas corretas<br>+ 0 respostas inseguras<br>(de 12) · alucinações 29 → 4</div>
+      </div>
+    </div>
+
+    <div class="qrcol">
+      <div class="qrcard proto">
+        <img class="qr" src="__QR_PROTO__" alt="QR code do protótipo">
+        <div class="qtxt">
+          <h3>Experimente agora</h3>
+          <p>Converse com o protótipo do Tide no seu celular.</p>
+          <span class="pill scan"><svg class="scanico" viewBox="0 0 24 24"><path d="M3 3h6v2H5v4H3V3zm12 0h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4zM7 7h4v4H7V7zm6 6h4v4h-4v-4z"/></svg> Aponte a câmera</span>
+        </div>
+      </div>
+      <div class="qrcard site">
+        <img class="qr" src="__QR_LANDING__" alt="QR code do projeto">
+        <div class="qtxt">
+          <h3>Conheça o projeto</h3>
+          <p>Proposta completa, modelo de negócio (Canvas) e plano.</p>
+          <span class="pill scan"><svg class="scanico" viewBox="0 0 24 24"><path d="M3 3h6v2H5v4H3V3zm12 0h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4zM7 7h4v4H7V7zm6 6h4v4h-4v-4z"/></svg> Aponte a câmera</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bot">
+    <div class="authors"><b>Karolina Azevedo · Michele A. Brandão · Mirella M. Moro</b><div class="aff">Universidade Federal de Minas Gerais (UFMG) · DCC</div></div>
+    <div class="hint"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 5a1.4 1.4 0 110 2.8A1.4 1.4 0 0112 7zm1.6 10h-3.2v-1.2h.9v-3.1h-.9V11.5h2.3v4.1h.9V17z"/></svg> Pode escanear — é seguro e gratuito</div>
+  </footer>
+
+  <div class="wavewrap w2">
+    <div class="waves wmove2">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#0f6e7e" d="M0,160 C240,260 480,60 720,140 C960,220 1200,80 1440,150 L1440,320 L0,320 Z"></path></svg>
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#0f6e7e" d="M0,160 C240,260 480,60 720,140 C960,220 1200,80 1440,150 L1440,320 L0,320 Z"></path></svg>
+    </div>
+  </div>
+  <div class="wavewrap">
+    <div class="waves wmove">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#12707f" d="M0,210 C220,150 470,280 720,220 C970,160 1200,250 1440,200 L1440,320 L0,320 Z"></path></svg>
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#12707f" d="M0,210 C220,150 470,280 720,220 C970,160 1200,250 1440,200 L1440,320 L0,320 Z"></path></svg>
+    </div>
+  </div>
+</div>
+</body>
+</html>

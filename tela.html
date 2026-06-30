@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tide — Pôster Digital</title>
+<style>
+  :root{
+    --ink:#13262B; --teal:#0F6E7E; --teal-deep:#093C46; --teal-mid:#12707F;
+    --coral:#F0637C; --coral-deep:#D8485F; --mint:#CFE9E6; --sand:#FBF7F0;
+    --green:#54D6A4; --white:#ffffff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    background:#072d35; color:var(--white); overflow:hidden;
+  }
+  .stage{
+    position:relative; width:100vw; height:100vh; overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 12% 8%, #15808f 0%, rgba(21,128,143,0) 55%),
+      radial-gradient(120% 120% at 100% 100%, #0c4f5b 0%, rgba(12,79,91,0) 60%),
+      linear-gradient(135deg,#0b4651 0%, #0a3d47 60%, #082f37 100%);
+    display:flex; flex-direction:column;
+    padding:clamp(20px,3.2vh,46px) clamp(26px,3.4vw,64px);
+  }
+  /* decorative blobs */
+  .blob{position:absolute; border-radius:50%; filter:blur(6px); opacity:.18; pointer-events:none;}
+  .b1{width:34vw;height:34vw; right:-8vw; top:-10vw; background:radial-gradient(circle,#F0637C,transparent 70%); opacity:.30;}
+  .b2{width:26vw;height:26vw; left:-6vw; bottom:8vh; background:radial-gradient(circle,#54D6A4,transparent 70%); opacity:.22;}
+  /* waves */
+  .waves{position:absolute; left:0; right:0; bottom:0; width:200%; height:26vh; pointer-events:none;}
+  .waves svg{width:50%; height:100%; display:block; float:left;}
+  .wavewrap{position:absolute; left:0; bottom:0; width:100%; height:26vh; overflow:hidden; opacity:.5;}
+  .wavewrap.w2{opacity:.28; height:32vh;}
+  .wmove{animation:slide 18s linear infinite;}
+  .wmove2{animation:slide 26s linear infinite;}
+  @keyframes slide{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  header.top{display:flex; justify-content:space-between; align-items:center; z-index:3;}
+  .kicker{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .tag{
+    font-size:clamp(11px,1.15vw,16px); font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    padding:7px 14px; border-radius:999px; background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.18); color:#d8f3f0;
+  }
+  .tag.coral{background:rgba(240,99,124,.18); border-color:rgba(240,99,124,.45); color:#ffd7df;}
+  .evt{font-size:clamp(11px,1vw,15px); color:#a9cfcf; font-weight:600; letter-spacing:.04em; text-align:right;}
+
+  .main{flex:1; display:grid; grid-template-columns:1.35fr 1fr; gap:clamp(24px,2.6vw,56px); align-items:center; z-index:3;}
+
+  .wordmark{display:flex; align-items:baseline; gap:.06em; line-height:.9;}
+  .wordmark h1{
+    font-size:clamp(74px,12.5vw,210px); font-weight:800; letter-spacing:-.02em;
+    background:linear-gradient(180deg,#ffffff 0%, #cdeee9 100%); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .wordmark .dot{width:clamp(14px,1.7vw,26px); height:clamp(14px,1.7vw,26px); border-radius:50%; background:var(--coral); transform:translateY(-.15em); box-shadow:0 0 26px rgba(240,99,124,.8);}
+  .lead{font-size:clamp(18px,2.05vw,33px); font-weight:700; color:#eafaf7; margin-top:.35em; line-height:1.18; max-width:18ch;}
+  .lead b{color:#ffd7df;}
+  .sub{font-size:clamp(13px,1.35vw,21px); color:#bfe0df; margin-top:.7em; line-height:1.45; max-width:42ch;}
+  .sub b{color:#ffffff;}
+
+  .statline{display:flex; align-items:center; gap:clamp(14px,1.6vw,30px); margin-top:clamp(16px,2.4vh,30px);}
+  .stat{display:flex; flex-direction:column;}
+  .stat .num{font-size:clamp(40px,6.3vw,104px); font-weight:800; line-height:.95;}
+  .stat .num.good{color:var(--green);}
+  .stat .num.bad{color:#ff9aa6;}
+  .stat .lbl{font-size:clamp(11px,1.1vw,17px); color:#bfe0df; font-weight:600; margin-top:.35em; letter-spacing:.02em;}
+  .arrowbig{font-size:clamp(34px,4.4vw,74px); color:#eafaf7; opacity:.65; font-weight:300;}
+  .statcap{font-size:clamp(12px,1.15vw,18px); color:#9fd0ce; margin-top:.5em; font-weight:600;}
+
+  /* QR column */
+  .qrcol{display:flex; flex-direction:column; gap:clamp(14px,2vh,26px);}
+  .qrcard{
+    background:rgba(255,255,255,.97); color:var(--ink); border-radius:22px;
+    padding:clamp(14px,1.7vw,24px); display:grid; grid-template-columns:auto 1fr; gap:clamp(12px,1.4vw,22px);
+    align-items:center; box-shadow:0 18px 50px rgba(0,0,0,.32); position:relative; overflow:hidden;
+  }
+  .qrcard .qr{width:clamp(108px,11vw,188px); height:auto; aspect-ratio:1; border-radius:12px; display:block;}
+  .qrcard .qtxt h3{font-size:clamp(17px,1.75vw,29px); font-weight:800; line-height:1.08;}
+  .qrcard .qtxt p{font-size:clamp(12px,1.15vw,18px); color:#5a6b6e; margin-top:.35em; line-height:1.35;}
+  .qrcard .pill{display:inline-flex; align-items:center; gap:8px; margin-top:.7em; font-weight:800;
+    font-size:clamp(12px,1.15vw,17px); padding:8px 14px; border-radius:999px;}
+  .qrcard.proto{border-top:6px solid var(--coral);}
+  .qrcard.proto .pill{background:var(--coral); color:#fff;}
+  .qrcard.site{border-top:6px solid var(--teal);}
+  .qrcard.site .pill{background:var(--teal); color:#fff;}
+  .scan{animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.05);}}
+  .scanico{width:18px;height:18px; fill:currentColor;}
+
+  footer.bot{display:flex; justify-content:space-between; align-items:flex-end; z-index:3; gap:18px; flex-wrap:wrap;}
+  .authors{font-size:clamp(12px,1.2vw,18px); color:#cfe9e6;}
+  .authors b{color:#fff;}
+  .authors .aff{color:#8fc0bf; font-size:.86em; margin-top:.25em;}
+  .hint{display:flex; align-items:center; gap:10px; font-size:clamp(12px,1.2vw,18px); color:#eafaf7; font-weight:700;}
+  .hint svg{width:22px;height:22px; fill:#ffd7df;}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
+  <header class="top">
+    <div class="kicker">
+      <span class="tag coral">FemTech · HealthTech</span>
+      <span class="tag">IA aplicada (RAG)</span>
+      <span class="tag">Impacto social</span>
+    </div>
+    <div class="evt">Projeto de Inovação · UFMG<br>Sessão de Pôsteres</div>
+  </header>
+
+  <section class="main">
+    <div class="left">
+      <div class="wordmark"><h1>Tide</h1><span class="dot"></span></div>
+      <div class="lead">Menopausa Informada: um chatbot baseado em <b>evidências</b>.</div>
+      <div class="sub">Menopausa + desinformação + IA que alucina são um risco em saúde. O <b>Tide</b> é um chatbot em <b>português-BR</b> que responde com base em <b>diretrizes oficiais</b>, mostra as <b>fontes</b> e gera um <b>relatório clínico em PDF</b> para a consulta.</div>
+
+      <div class="statline">
+        <div class="stat"><span class="num bad">48%</span><span class="lbl">IA comum<br>(sem RAG)</span></div>
+        <div class="arrowbig">→</div>
+        <div class="stat"><span class="num good">93%</span><span class="lbl">Tide<br>(com RAG)</span></div>
+        <div class="statcap">respostas corretas<br>+ 0 respostas inseguras<br>(de 12) · alucinações 29 → 4</div>
+      </div>
+    </div>
+
+    <div class="qrcol">
+      <div class="qrcard proto">
+        <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAApAAAAKQCAIAAACn190HAAAOeElEQVR4nO3dwU0sSQJFUWhhAj7Mpv23ZDbtAz5Ue8AoNT/Eu8Q5BkBmVFZd5eq9v16vNwBg218/fQEAwP8m2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABDwcfoffP7n79P/4ipf//x36vzr11NXP8+n13/6ebvtefb73Pq8vGEDQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAwPE97KfsGf/u81y7ntv2g9f2pE8/D2v3W3fb/X6Ofd+9YQNAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0DA3B52fa+0vhd723mu3e9pp+/39J702j73bXv29e/XV/w8vWEDQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAQH4Pm9Zerz3m3/351veS69dT33vme96wASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIMAeNtP71qfV97PX9o/XzvOp+vXwu3nDBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgID8Hra92JbTn9fpPeO1/e/6HvPp/ezT1q5njfP5s7xhA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQMDcHvba3jA/a20v+fTe9mmnr3/tfNauf+3vP7X2PN/GGzYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAEvL9er5++Bi7arz2913va2v7xmvre82m33S9/ljdsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACPg4/Q/q+6/2j3/286o/P0+tPT/181x7ftY+37qvy35/vGEDQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAwPvr9Tr6D9b2XNf2aE9fz21/f83a/da/j2vWzvOpteet/vt8mjdsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACPg4/Q/W9pLX9mvXruep2z6vtX3c287/NvXPa+36v8a+v095wwaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoCA43vYa/usa07vs57eSz5t7Xrqe8C3XX/9+a/vnd92nqd5wwaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoCA99frdfQfrO3jru2brp1Pfc97zdo+8VO3Xf9pa+dzWv35WXvevGEDQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAwMfpf3DbHurT61/b662fz9rfP/08r+2R17/va9fz1Nrvydrz/xn/ffaGDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAHH97Dr+6On91zX9obXzv829c93bU+6fj5rz0P9863zhg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQAB76/X621Jfd/0tj3p+ud12/Owtpe8tse8dr+3fR/XnoenTn++3rABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEg4Pgedn0fd4293p9VP/+n6te/pv57WP99+Ip/f71hA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQEB+D/s2a3u6a/u49fut7wfXP9+n6tdz2m2f72nesAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASDg+B72U/V94qduu9+n1vZu659XfZ/4tNvu9zZfY9/Hp7xhA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQMDxPez6/m59P/WptX3fteeBltPf37Xfn/pee/38T/OGDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAHH97DX1PeSb9v3vc3anvHa96X+/Jz+fOufl9+f73nDBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgIDje9j2fb/nfn/3/a7tB6+d/9r93vb8PGWv+md5wwaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoCAj7fL3La/u3Y9T912Pmv71k+tXc/aea59v9asfd/XeMMGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAgOv2sNfU93fX9qRv+7zW9trXnoe1/eO181lz+nw+48+bN2wACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAImNvDru+/1vdW19y2H7y2B7z2vK3ted/2/K/twdfP8ylv2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAwt4dd37tdu57Tbrvf2/Z9165/7e8/VT/P2+73a+w8vWEDQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAwPE97LU90bU919N70qf3kuv72WvXs7YHX//7T51+/p+qn+dTa9ezxhs2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABBzfw77N2l7v6f3stb3htf3v+p7x2nk+tXaea8/bU7d9vp9jz483bAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAg4vodd3089rb7nurYXu3a/a9Y+r6fq5//Ubfd72mf8+feGDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAHH97DX9kTXrJ3P2v5ufb92zdre+enn7bbrWXv+186zzhs2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABHzctq9cd3r/9fTfr+8r33aeT62d/1O37SuvPT98zxs2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABLy/Xq+j/8De6vecz+922+e7tnfuPH9WfR/9qdPn7w0bAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAj7e4tb2Vut7tGvXX38e6taen7X97LXz8fz/7t83b9gAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQkN/D5mf3fevX89Rte8Zr91vfM37K9+XP3u9n/Hnzhg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQAB9rCZ3t89fT1rf7/+eZ12+vrXzue253ntftd4wwaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoCA/B726X1WftbaXu9T9f3dtb3z+r7y2vWsnf/a31/jDRsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwAC3l+v19F/cNte6Wmn93Fp7Qfb//7d51P/vq99X+r36w0bAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAo7vYQMA/z9v2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2ADwtu9fq8SxfXKwuh8AAAAASUVORK5CYII=" alt="QR code do protótipo">
+        <div class="qtxt">
+          <h3>Experimente agora</h3>
+          <p>Converse com o protótipo do Tide no seu celular.</p>
+          <span class="pill scan"><svg class="scanico" viewBox="0 0 24 24"><path d="M3 3h6v2H5v4H3V3zm12 0h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4zM7 7h4v4H7V7zm6 6h4v4h-4v-4z"/></svg> Aponte a câmera</span>
+        </div>
+      </div>
+      <div class="qrcard site">
+        <img class="qr" src="data:image/png;base64,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p+033LX73sNppu157P75p/2+3+WEAUAiGAAkggFAIhgAJIIBQCIYACSCAUAiGAAkggFAIhgAJIIBQCIYACSCAUAiGAAkggFA8nVdV/uXbOnu+/qn7SusZl/kZ+83nLZXsZoTBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAyfdjsdP2AFbbfb9h9+tfbfUeybS9k9XXz3s5YQCQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAMGMP467T3nc/bb9h2v2fdn9O25847Xm763nY/XTCACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQBgzz2Mu057H/00q/ch+H/2Nj7rtfh5nnY/nTAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwADhjD4PPmrbHMG3PY9rn3zXtelab9vN9DduPccIAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACCxh/HDeb//e7/v7nsPd61+Hk7zHLZfcpcTBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAZ+xheP/+Z+3+fv/VXP/P3hd5HXZ/nDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEi+rut6nPQ+993dff/+3fu/+37D7s/bafsK057/u16b/77c5YQBQCIYACSCAUAiGAAkggFAIhgAJIIBQCIYACSCAUAiGAAkggFAIhgAJIIBQCIYACSCAcCMPQwAfgYnDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAAexX+6sBtJSZFrMQAAAABJRU5ErkJggg==" alt="QR code do projeto">
+        <div class="qtxt">
+          <h3>Conheça o projeto</h3>
+          <p>Proposta completa, modelo de negócio (Canvas) e plano.</p>
+          <span class="pill scan"><svg class="scanico" viewBox="0 0 24 24"><path d="M3 3h6v2H5v4H3V3zm12 0h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4zM7 7h4v4H7V7zm6 6h4v4h-4v-4z"/></svg> Aponte a câmera</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bot">
+    <div class="authors"><b>Karolina Azevedo · Michele A. Brandão · Mirella M. Moro</b><div class="aff">Universidade Federal de Minas Gerais (UFMG) · DCC</div></div>
+    <div class="hint"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 5a1.4 1.4 0 110 2.8A1.4 1.4 0 0112 7zm1.6 10h-3.2v-1.2h.9v-3.1h-.9V11.5h2.3v4.1h.9V17z"/></svg> Pode escanear — é seguro e gratuito</div>
+  </footer>
+
+  <div class="wavewrap w2">
+    <div class="waves wmove2">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#0f6e7e" d="M0,160 C240,260 480,60 720,140 C960,220 1200,80 1440,150 L1440,320 L0,320 Z"></path></svg>
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#0f6e7e" d="M0,160 C240,260 480,60 720,140 C960,220 1200,80 1440,150 L1440,320 L0,320 Z"></path></svg>
+    </div>
+  </div>
+  <div class="wavewrap">
+    <div class="waves wmove">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#12707f" d="M0,210 C220,150 470,280 720,220 C970,160 1200,250 1440,200 L1440,320 L0,320 Z"></path></svg>
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#12707f" d="M0,210 C220,150 470,280 720,220 C970,160 1200,250 1440,200 L1440,320 L0,320 Z"></path></svg>
+    </div>
+  </div>
+</div>
+</body>
+</html>
