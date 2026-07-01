@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Tide — Pôster A0</title>
+<style>
+  @page { size: 841mm 1189mm; margin: 0; }
+  :root{
+    --navy:#12315C; --blue:#2463A6; --blue2:#3E7FC1; --sky:#E9F1FA; --sky2:#DCE9F7;
+    --ink:#1D2733; --gray:#51606E; --line:#CBD7E4; --bg:#EEF3F9; --white:#fff;
+    --green:#2E7D52; --green-s:#E4F1EA; --red:#B0463A; --red-s:#F6E7E4; --amber:#B7791F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  html,body{width:841mm; height:1189mm;}
+  body{font-family:"Segoe UI",Arial,Helvetica,sans-serif; background:var(--bg); color:var(--ink);
+    padding:22mm 24mm; line-height:1.32;}
+  .poster{display:flex; flex-direction:column; height:100%;}
+
+  /* ---------- HEADER ---------- */
+  .header{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14mm;
+    padding-bottom:11mm; border-bottom:2mm solid var(--navy);}
+  .logo{border:1.2mm solid var(--navy); border-radius:4mm; padding:7mm 9mm; text-align:center; color:var(--navy);
+    background:var(--white); min-width:66mm;}
+  .logo .big{font-size:52pt; font-weight:800; letter-spacing:.5mm; line-height:1;}
+  .logo .small{font-size:16pt; color:var(--gray); margin-top:3mm; font-weight:600;}
+  .htitle{text-align:center;}
+  .htitle .kicker{font-size:26pt; font-weight:700; letter-spacing:3mm; text-transform:uppercase; color:var(--blue);}
+  .htitle h1{font-size:104pt; font-weight:800; color:var(--navy); line-height:.98; letter-spacing:-1mm; margin:2mm 0;}
+  .htitle .sub{font-size:46pt; font-weight:600; color:var(--ink); margin-top:1mm;}
+  .htitle .authors{font-size:30pt; color:var(--ink); margin-top:8mm; font-weight:600;}
+  .htitle .aff{font-size:23pt; color:var(--gray); margin-top:2mm;}
+
+  /* ---------- BANNER ---------- */
+  .banner{margin-top:10mm; background:var(--navy); color:#fff; border-radius:6mm;
+    display:grid; grid-template-columns:auto 1fr; align-items:center; gap:12mm; padding:9mm 16mm;}
+  .banner .hero{display:flex; align-items:baseline; gap:5mm;}
+  .banner .hero .n{font-size:118pt; font-weight:800; line-height:.9; color:#8FD3B0;}
+  .banner .hero .t{font-size:30pt; font-weight:700; color:#cfe0f2; max-width:120mm;}
+  .banner .more{display:flex; gap:20mm; justify-content:flex-end;}
+  .banner .more .it{text-align:center;}
+  .banner .more .it b{font-size:56pt; font-weight:800; display:block; line-height:1;}
+  .banner .more .it b.a{color:#F3B5AB;} .banner .more .it b.g{color:#8FD3B0;}
+  .banner .more .it span{font-size:22pt; color:#cfe0f2;}
+  .banner .more .it .arrow{font-size:34pt; color:#9fb6d2;}
+
+  /* ---------- COLUMNS ---------- */
+  .cols{display:grid; grid-template-columns:repeat(3,1fr); gap:14mm; flex:1; margin-top:11mm; min-height:0;}
+  .col{display:flex; flex-direction:column; gap:11mm;}
+  .card{background:var(--white); border:.5mm solid var(--line); border-radius:5mm; padding:9mm 9mm 9.5mm;}
+  .sec-h{display:flex; align-items:center; gap:6mm; margin-bottom:6mm;}
+  .sec-h .num{flex:none; width:20mm; height:20mm; border-radius:50%; background:var(--navy); color:#fff;
+    font-size:34pt; font-weight:800; display:flex; align-items:center; justify-content:center;}
+  .sec-h .ic{flex:none; width:16mm; height:16mm;}
+  .sec-h h2{font-size:44pt; font-weight:800; color:var(--navy); line-height:1;}
+  .sec-h .ttl{display:flex; align-items:center; gap:5mm;}
+  svg{display:block;}
+  .ic svg{width:100%; height:100%;}
+
+  p,li{font-size:30pt; color:var(--ink);}
+  .muted{color:var(--gray);}
+  ul.pts{list-style:none; display:flex; flex-direction:column; gap:4.5mm; margin-top:1mm;}
+  ul.pts li{position:relative; padding-left:11mm; line-height:1.28;}
+  ul.pts li::before{content:""; position:absolute; left:0; top:9pt; width:5mm; height:5mm; border-radius:1.4mm; background:var(--blue);}
+  b.k{color:var(--navy);}
+  .tagrow{display:flex; flex-wrap:wrap; gap:4mm; margin-top:7mm;}
+  .tag{font-size:22pt; font-weight:700; color:var(--blue); background:var(--sky); border:.4mm solid var(--sky2);
+    border-radius:99mm; padding:3mm 7mm;}
+
+  .highlight{background:var(--sky); border:.5mm solid var(--sky2); border-radius:4mm; padding:7mm 8mm; margin-top:7mm;}
+  .highlight .lbl{font-size:22pt; font-weight:800; letter-spacing:1mm; text-transform:uppercase; color:var(--blue);}
+  .highlight p{font-size:29pt; margin-top:2mm;}
+
+  /* flow (RAG) */
+  .flow{display:flex; flex-direction:column; gap:0; margin-top:8mm;}
+  .fstep{display:flex; align-items:center; gap:6mm; background:var(--sky); border:.5mm solid var(--sky2);
+    border-radius:4mm; padding:5.5mm 7mm;}
+  .fstep .fn{flex:none; width:15mm;height:15mm;border-radius:50%; background:var(--blue); color:#fff;
+    font-size:26pt; font-weight:800; display:flex;align-items:center;justify-content:center;}
+  .fstep p{font-size:26pt; line-height:1.2;} .fstep b{color:var(--navy);}
+  .farr{align-self:center; width:0;height:0; border-left:6mm solid transparent; border-right:6mm solid transparent;
+    border-top:6mm solid var(--blue2); margin:3mm 0;}
+
+  /* value blocks */
+  .vgrid{display:flex; flex-direction:column; gap:6mm; margin-top:3mm;}
+  .vblock{border-left:0; background:var(--bg); border:.5mm solid var(--line); border-radius:4mm; padding:6mm 7mm;}
+  .vblock .vh{display:flex; align-items:center; gap:5mm; margin-bottom:2mm;}
+  .vblock .vh .vic{width:13mm;height:13mm; flex:none;}
+  .vblock .vh h4{font-size:28pt; color:var(--navy); font-weight:800;}
+  .vblock p{font-size:27pt; line-height:1.25;}
+
+  /* BMC */
+  .bmc{display:flex; flex-direction:column; gap:5mm; margin-top:3mm;}
+  .blk{border-radius:4mm; padding:6mm 7mm; border:.5mm solid var(--line); background:var(--bg);}
+  .blk.vp{background:var(--navy); border-color:var(--navy);}
+  .blk.vp *{color:#eaf2fb;} .blk.vp .bt .bic path{stroke:#eaf2fb;}
+  .blk.rev{background:var(--green-s); border-color:#cfe6d8;}
+  .blk .bt{display:flex; align-items:center; gap:5mm; margin-bottom:2.5mm;}
+  .blk .bt .bic{width:13mm;height:13mm; flex:none;}
+  .blk .bt h4{font-size:27pt; font-weight:800; color:var(--navy);}
+  .blk ul{list-style:none; display:flex; flex-direction:column; gap:2mm;}
+  .blk li{font-size:24pt; line-height:1.2; padding-left:8mm; position:relative; color:var(--ink);}
+  .blk li::before{content:""; position:absolute; left:0; top:10pt; width:3.5mm;height:3.5mm; border-radius:50%; background:var(--blue2);}
+  .blk.rev li::before{background:var(--green);}
+
+  /* stack chips + arch */
+  .chips{display:flex; flex-wrap:wrap; gap:4mm; margin-top:2mm;}
+  .chip{font-size:23pt; font-weight:700; color:var(--navy); background:var(--white); border:.5mm solid var(--line);
+    border-radius:3mm; padding:3.5mm 6mm;}
+  .arch{margin-top:8mm; display:flex; flex-direction:column; gap:0;}
+  .anode{background:var(--sky); border:.5mm solid var(--sky2); border-radius:4mm; padding:5mm 7mm; text-align:center;
+    font-size:25pt; font-weight:700; color:var(--navy);}
+  .anode small{display:block; font-size:20pt; color:var(--gray); font-weight:600; margin-top:1mm;}
+  .anode.dual{display:flex; gap:5mm; background:transparent; border:none; padding:0;}
+  .anode.dual > div{flex:1; background:var(--sky); border:.5mm solid var(--sky2); border-radius:4mm; padding:5mm; }
+  .adown{align-self:center; width:0;height:0;border-left:5mm solid transparent;border-right:5mm solid transparent;
+    border-top:5mm solid var(--blue2); margin:2.5mm 0;}
+
+  /* impact rows */
+  .irow{display:flex; align-items:flex-start; gap:6mm; margin-top:5.5mm;}
+  .irow .iic{flex:none; width:17mm;height:17mm; border-radius:3.5mm; background:var(--sky); padding:3mm;}
+  .irow h4{font-size:27pt; color:var(--navy); font-weight:800;}
+  .irow p{font-size:25pt; color:var(--ink); line-height:1.22;}
+
+  /* stage tracker */
+  .track{display:flex; align-items:center; gap:0; margin:6mm 0 7mm;}
+  .tstep{flex:1; text-align:center;}
+  .tstep .dot{width:16mm;height:16mm;border-radius:50%; margin:0 auto 3mm; border:1mm solid var(--line);
+    background:var(--white);}
+  .tstep.done .dot{background:var(--green); border-color:var(--green);}
+  .tstep.now .dot{background:var(--blue); border-color:var(--blue);}
+  .tstep span{font-size:24pt; font-weight:700; color:var(--gray);}
+  .tstep.done span, .tstep.now span{color:var(--navy);}
+  .tline{height:2mm; flex:1; background:var(--line); margin-top:-9mm;}
+  .tline.on{background:var(--green);}
+
+  /* contact / QR */
+  .qrs{display:flex; gap:7mm; margin-top:4mm; justify-content:space-between;}
+  .qrc{flex:1; text-align:center;}
+  .qrc img{width:100%; max-width:56mm; aspect-ratio:1; border:1mm solid var(--line); border-radius:3mm; background:#fff;}
+  .qrc .ql{font-size:24pt; font-weight:800; color:var(--navy); margin-top:3mm;}
+  .qrc .qu{font-size:18pt; color:var(--gray);}
+  .email{font-size:26pt; margin-top:7mm; color:var(--navy); font-weight:700; text-align:center;}
+
+  .footer{margin-top:9mm; padding-top:6mm; border-top:.6mm solid var(--line);
+    display:flex; justify-content:space-between; font-size:22pt; color:var(--gray);}
+  .footer b{color:var(--navy);}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo"><div class="big">UFMG</div><div class="small">DCC · UFMG</div></div>
+    <div class="htitle">
+      <div class="kicker">FemTech · HealthTech · IA aplicada</div>
+      <h1>Tide</h1>
+      <div class="sub">Menopausa Informada: um chatbot baseado em evidências</div>
+      <div class="authors">Karolina Azevedo¹ · Mirella M. Moro¹ · Michele A. Brandão¹ · Letícia Machado²</div>
+      <div class="aff">¹ Universidade Federal de Minas Gerais (UFMG / DCC) &nbsp;·&nbsp; ² Universidade Federal do Rio Grande do Sul (UFRGS)</div>
+    </div>
+    <div class="logo"><div class="big">SBC</div><div class="small">Sociedade Brasileira<br>de Computação</div></div>
+  </div>
+
+  <!-- RESULT BANNER -->
+  <div class="banner">
+    <div class="hero"><span class="n">93%</span><span class="t">de respostas corretas com fontes rastreáveis</span></div>
+    <div class="more">
+      <div class="it"><b class="a">48%</b><span>IA sem RAG</span></div>
+      <div class="it"><span class="arrow">→</span></div>
+      <div class="it"><b class="g">93%</b><span>Tide (com RAG)</span></div>
+      <div class="it"><b class="g">0</b><span>respostas inseguras</span></div>
+      <div class="it"><b class="g">29→4</b><span>alucinações</span></div>
+    </div>
+  </div>
+
+  <!-- COLUMNS -->
+  <div class="cols">
+
+    <!-- ===== COLUMN 1 ===== -->
+    <div class="col">
+      <div class="card">
+        <div class="sec-h"><div class="num">1</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><h2>Problema</h2></div></div>
+        <ul class="pts">
+          <li>A menopausa afeta a qualidade de vida de <b class="k">milhões de mulheres</b>.</li>
+          <li>No Brasil, falta informação confiável em português e a comunicação com profissionais de saúde é difícil — gerando <b class="k">assimetria de informação</b>.</li>
+          <li>A IA genérica ajuda, mas <b class="k">alucina</b>: gera respostas plausíveis, porém incorretas — um risco crítico em saúde.</li>
+        </ul>
+        <div class="tagrow"><span class="tag">Saúde da mulher</span><span class="tag">Climatério</span><span class="tag">IA responsável</span></div>
+      </div>
+
+      <div class="card">
+        <div class="sec-h"><div class="num">2</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></span><h2>Solução</h2></div></div>
+        <ul class="pts">
+          <li><b class="k">Tide</b>: chatbot em português-BR baseado em <b class="k">RAG</b> (Geração Aumentada por Recuperação).</li>
+          <li>Respostas ancoradas em <b class="k">diretrizes oficiais</b> (FEBRASGO, Ministério da Saúde) com <b class="k">fontes rastreáveis</b>.</li>
+          <li>Dois modos: <b class="k">conversa</b> + geração de um <b class="k">relatório clínico em PDF</b> para a consulta.</li>
+        </ul>
+        <div class="flow">
+          <div class="fstep"><div class="fn">1</div><p><b>Pergunta</b> da usuária, em linguagem natural</p></div>
+          <div class="farr"></div>
+          <div class="fstep"><div class="fn">2</div><p><b>Recuperação</b> na base curada de diretrizes</p></div>
+          <div class="farr"></div>
+          <div class="fstep"><div class="fn">3</div><p><b>LLM</b> gera a resposta ancorada nas fontes</p></div>
+          <div class="farr"></div>
+          <div class="fstep"><div class="fn">4</div><p><b>Resposta</b> confiável + fontes · relatório PDF</p></div>
+        </div>
+        <div class="highlight"><div class="lbl">Diferencial inovador</div><p>Combina, ao mesmo tempo, <b class="k">fontes oficiais curadas</b>, <b class="k">transparência</b> (cada resposta mostra a origem), <b class="k">contexto pt-BR</b> e <b class="k">relatório clínico</b> — o que as soluções “caixa-preta” não oferecem.</p></div>
+      </div>
+    </div>
+
+    <!-- ===== COLUMN 2 ===== -->
+    <div class="col">
+      <div class="card">
+        <div class="sec-h"><div class="num">3</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><h2>Proposta de Valor</h2></div></div>
+        <div class="vgrid">
+          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 5.6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><h4>Para quem</h4></div><p>Mulheres no climatério, profissionais de saúde, clínicas, planos de saúde e empresas.</p></div>
+          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 4 2 7h10c0-3 2-4 2-7a7 7 0 0 0-7-7zM9 22h6"/></svg></span><h4>Qual dor resolve</h4></div><p>Desinformação, insegurança e consultas pouco produtivas por falta de preparo.</p></div>
+          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><h4>Por que é melhor</h4></div><p>Confiável, rastreável, em pt-BR e com relatório clínico — reduz alucinações (93% vs 48%).</p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-h"><div class="num">5</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM2 10h2M2 14h2M20 10h2M20 14h2M10 2v2M14 2v2M10 20v2M14 20v2"/></svg></span><h2>Tecnologia</h2></div></div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">LangChain</span><span class="chip">Embeddings</span><span class="chip">Banco vetorial</span><span class="chip">LLM</span></div>
+        <div class="arch">
+          <div class="anode">Usuária <small>pergunta em pt-BR</small></div>
+          <div class="adown"></div>
+          <div class="anode">Interface · Orquestração <small>Streamlit + LangChain</small></div>
+          <div class="adown"></div>
+          <div class="anode dual"><div>Recuperação<small>base vetorial curada</small></div><div>LLM<small>geração ancorada</small></div></div>
+          <div class="adown"></div>
+          <div class="anode">Resposta + fontes · Relatório PDF</div>
+        </div>
+        <ul class="pts" style="margin-top:7mm"><li>Base curada: <b class="k">82 documentos</b> de 10 instituições, em pt-BR.</li></ul>
+      </div>
+
+      <div class="card">
+        <div class="sec-h"><div class="num">6</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><h2>Impacto</h2></div></div>
+        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><div><h4>Social</h4><p>Democratiza a informação de saúde, empodera a paciente e reduz a desinformação.</p></div></div>
+        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg></span><div><h4>Econômico</h4><p>Consultas mais eficientes; mercado de FemTech em crescimento.</p></div></div>
+        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5zM6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span><div><h4>Educacional</h4><p>Promove letramento em saúde e autocuidado.</p></div></div>
+        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span><div><h4>Escalabilidade</h4><p>Base atualizável e expansível a novos temas de saúde da mulher.</p></div></div>
+      </div>
+    </div>
+
+    <!-- ===== COLUMN 3 ===== -->
+    <div class="col">
+      <div class="card">
+        <div class="sec-h"><div class="num">4</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/></svg></span><h2>Modelo de Negócio</h2></div></div>
+        <div class="bmc">
+          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 5.6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><h4>Clientes</h4></div><ul><li>Mulheres no climatério; profissionais de saúde</li><li>Clínicas e planos de saúde (B2B)</li><li>Empresas (saúde corporativa); SUS e ONGs</li></ul></div>
+          <div class="blk vp"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#eaf2fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 7v6c0 5 8 9 8 9s8-4 8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><h4>Proposta de valor</h4></div><ul><li>Informação confiável e rastreável em pt-BR</li><li>Relatório clínico em PDF para a consulta</li><li>Segurança: mitiga alucinações (93% vs 48%)</li></ul></div>
+          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4zM2 20h20M8 8h8M8 12h5"/></svg></span><h4>Canais</h4></div><ul><li>App web (e futuro mobile)</li><li>Parcerias com clínicas, planos e RH de empresas</li></ul></div>
+          <div class="blk rev"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 14.5c0 1.2 1.1 2 2.5 2s2.5-.7 2.5-2-1.1-1.7-2.5-2-2.5-.8-2.5-2 1.1-2 2.5-2 2.5.8 2.5 2"/></svg></span><h4>Receita</h4></div><ul><li>SaaS B2B (clínicas, planos, empresas)</li><li>Parcerias institucionais; freemium ético</li></ul></div>
+          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8v8H8z"/></svg></span><h4>Custos</h4></div><ul><li>Infraestrutura de IA; curadoria e validação clínica</li><li>Desenvolvimento e conformidade (LGPD)</li></ul></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-h"><div class="num">7</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22V4a1 1 0 0 1 1-1h12l-2 4 2 4H6"/></svg></span><h2>Estágio</h2></div></div>
+        <div class="track">
+          <div class="tstep done"><div class="dot"></div><span>Ideia</span></div>
+          <div class="tline on"></div>
+          <div class="tstep done"><div class="dot"></div><span>Protótipo</span></div>
+          <div class="tline on"></div>
+          <div class="tstep now"><div class="dot"></div><span>Validado</span></div>
+        </div>
+        <ul class="pts"><li><b class="k">Protótipo funcional</b>, validado academicamente (93% de acerto, 0 respostas inseguras).</li><li>Próximos passos: validação clínica (FEBRASGO), LGPD e piloto.</li></ul>
+      </div>
+
+      <div class="card">
+        <div class="sec-h"><div class="num">8</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM21 14v7M17 21h4M17 17h.01"/></svg></span><h2>Contato</h2></div></div>
+        <div class="qrs">
+          <div class="qrc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAApAAAAKQCAIAAACn190HAAAOeElEQVR4nO3d4U30SAJFURiRAZlsPhPd5jOZEENPBqys/Uq8S50TANjV7r7yr/f+er3eAIBtf/30BQAA/5tgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQMDH6X/w+Z+/T/+Lq3z989+p869fT139PJ9e/+nn7bbn2e9z6/Pyhg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABx/ewn7Jn/LvPc+16btsPXtuTPv08rN1v3W33+zn2ffeGDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAFze9j1vdL6Xuxt57l2v6edvt/Te9Jr+9y37dnXv19f8fP0hg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQAB+T1sWnu99ph/9+db30uuX09975nvecMGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAHvYTO9bn1bfz17bP147z6fq18Pv5g0bAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAvJ72PZiW05/Xqf3jNf2v+t7zKf3s09bu541zufP8oYNAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAXN72Gt7w/ystb3k03vbp52+/rXzWbv+tb//1NrzfBtv2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABDw/nq9fvoauGi/9vRe72lr+8dr6nvPp912v/xZ3rABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEg4OP0P6jvv9o//tnPq/78PLX2/NTPc+35Wft8674u+/3xhg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQAB76/X6+g/WNtzXdujPX09t/39NWv3W/8+rlk7z6fWnrf67/Np3rABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEg4OP0P1jbS17br127nqdu+7zW9nFvO//b1D+vtev/Gvv+PuUNGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAKO72Gv7bOuOb3Penov+bS166nvAd92/fXnv753ftt5nuYNGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAALeX6/X0X+wto+7tm+6dj71Pe81a/vET912/aetnc9p9edn7Xnzhg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABH6f/wW17qE+vf22vt34+a3//9PO8tkde/76vXc9Ta78na8//Z/z32Rs2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABBzfw67vj57ec13bG147/9vUP9+1Pen6+aw9D/XPt84bNgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAS8v16vtyX1fdPb9qTrn9dtz8PaXvLaHvPa/d72fVx7Hp46/fl6wwaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoCA43vY9X3cNfZ6f1b9/J+qX/+a+u9h/ffhK/799YYNAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAfk97Nus7emu7ePW77e+H1z/fJ+qX89pt32+p3nDBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgADBBoAAwQaAAMEGgIDje9hP1feJn7rtfp9a27utf171feLTbrvf23yNfR+f8oYNAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAcf3sOv7u/X91KfW9n3XngdaTn9/135/6nvt9fM/zRs2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABBzfw15T30u+bd/3Nmt7xmvfl/rzc/rzrX9efn++5w0bAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAo7vYdv3/Z77/d33u7YfvHb+a/d72/PzlL3qn+UNGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAI+3i5z2/7u2vU8ddv5rO1bP7V2PWvnufb9WrP2fV/jDRsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACrtvDXlPf313bk77t81rba197Htb2j9fOZ83p8/mMP2/esAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBgbg+7vv9a31tdc9t+8Noe8Nrztrbnfdvzv7YHXz/Pp7xhA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQMDcHnZ973btek677X5v2/ddu/61v/9U/Txvu9+vsfP0hg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABgg0AAYINAAGCDQABx/ew1/ZE1/ZcT+9Jn95Lru9nr13P2h58/e8/dfr5f6p+nk+tXc8ab9gAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQcHwP+zZre72n97PX9obX9r/re8Zr5/nU2nmuPW9P3fb5fo49P96wASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIECwASBAsAEgQLABIOD4HnZ9P/W0+p7r2l7s2v2uWfu8nqqf/1O33e9pn/Hn3xs2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABBzfw17bE12zdj5r+7v1/do1a3vnp5+3265n7flfO886b9gAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQ8HHbvnLd6f3X03+/vq9823k+tXb+T922r7z2/PA9b9gAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQ8P56vY7+A3ur33M+v9ttn+/a3rnz/Fn1ffSnTp+/N2wACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAI+HiLW9tbre/Rrl1//XmoW3t+1vaz187H8/+7f9+8YQNAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0BAfg+bn933rV/PU7ftGa/db33P+Cnflz97v5/x580bNgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AAQINgAECDYABAg2AATYw2Z6f/f09az9/frnddrp6187n9ue57X7XeMNGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAALye9in91n5WWt7vU/V93fX9s7r+8pr17N2/mt/f403bAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAh4f71eR//BbXulp53ex6W1H2z/+3efT/37vvZ9qd+vN2wACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIEGwACBBsAAgQbAAIOL6HDQD8/7xhA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA0CAYANAgGADQIBgA8Dbvn8BVLuyLqmFWV0AAAAASUVORK5CYII=" alt="Demo"><div class="ql">Protótipo</div><div class="qu">demo ao vivo</div></div>
+          <div class="qrc"><img src="data:image/png;base64,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guABkCB4ACQIHgAJggdAQm4Pb/ue07T9qtp5auefZtpene931++nGx4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAwbg9v2n7SqWl7V7XnuX2fbPve2/bvd9rfS21v8n35+bvhAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACeP28G6btnc1zbTva7vte3Knavt2zrPrPG54ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAwrg9vNv7WLdN2/ea9nxu2/58pu01Ttszu2375532e/Ie9nzc8ABIEDwAEgQPgATBAyBB8ABIEDwAEgQPgATBAyBB8ABIEDwAEgQPgATBAyBB8ABIEDwAEgQPgITv13K395Zu76VN26Oatg+33bQ9sFPT3p9p55n2eU/9DPs9uf153fAASBA8ABIED4AEwQMgQfAASBA8ABIED4AEwQMgQfAASBA8ABIED4AEwQMgQfAASBA8ABIED4CE9Xt4p6btM23fn5v2fLY/z+1u76XVvt/te3vvYXuQbngAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0DC1/M8nz4Dof2/27bvpU3bF7y9b3f73z817f2f9jzfw/79U254ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAwvft/8H2fbJpTveitu+r3TZtj+3UtD2zmu3vf+3zuuEBkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJ1/fwTk3bT7rt9t7Y7f2qad/XtPPctv3zbt/bm/b8pz3Pn2H7eW54ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAwrg9vO37T9P2sbbvV213+/ncfv+nnf/0PKf//rTfk9vel5/nNG54ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAwvo9PHbtY03bz7u973X7+Uzbh5t2/ttqe4HbueEBkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJggdAguABkCB4ACQIHgAJ9vAYbdoe222398m2f97t5z817fO+h53nlBseAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQsH4Pb/s+07Tnc3uf7PZ+2LR9tWnnOXX7+5pm2r5d7fnf5oYHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkjNvDs//0z5q2P3fKXt1nTXv+034fpu1N3vaz/PxueAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQILgAZAgeAAkCB4ACYIHQMLX8zyfPgMAXOeGB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAJAgeAAmCB0CC4AGQIHgAvAr+Btcr+416+6LlAAAAAElFTkSuQmCC" alt="GitHub"><div class="ql">Projeto</div><div class="qu">GitHub</div></div>
+          <div class="qrc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhAAAAIQCAIAAABfYsDeAAAKHklEQVR4nO3d221ktxJA0ZahDJSJ83F0N5+biWJoZ2DvA4iequFa30LrPNi9wR/Wx/v9fgHAv/njX/8CAAQDgEowAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASD5fh339+dfpf3GV7///b9T7On0929en9/XP/D78rNPv1w4DgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4AZ8zCemnZe//Z5AKfnJUybZ/D0+qett2nzLaZdz7T3ddq075cdBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAO+dhbD8vfvt5/aef57TnM21eyG3zLU7z+/Cz7DAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwALhjHga7TJvHMG0+wenns32eB7+WHQYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIl5GL+5afMJns5XOP35p+dDnDbtevi92WEAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAHDHPIxp8x5uc9t8C+ttF+/rZ9lhAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACwcx7G6fkKt5k27+H0vIppts/zmLZ+tq+H7ewwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMACYMQ/j9Pn4/Kzb5g1snw+xfb6I34dd7DAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAJgxD2Pa/IBpbns+0+YxnLb9fqfN2zi9/qe9r+9h33c7DAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAko/3+/3aPO/B+fW7THtfT902j+G25zPt9+d72O+JHQYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAHfMw9hu+/PZPr9hu2nr4bb1fxs7DAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAZszD2D6P4en5+9PO9z99PdM+/6ntz/8pz/PXfv52dhgAJIIBQCIYACSCAUAiGAAkggFAIhgAJIIBQCIYACSCAUAiGAAkggFAIhgAJIIBQCIYANwxD+M05+/vMu19PTXt/Xqev9bXsN8HOwwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMAJLP12Hbz9M/7fT59dPmDZxeD6ef5+n73b6eT5u23p7a/n7tMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASD7e7/frpnkMt83zuO16tq+H29bnadPu9/vwejjNDgOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgBnzME677fx68w/+2W3v67Tt62H7vJavYevHDgOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgJ3zMKad/z7tvPvTbrv+p7bf77Tv123fx+9hz/MpOwwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMAGbMw9h+/v522+cHTOP5/N7P57brf8oOA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOA5PM1zLT5DafPl592nv5Tt80vmbZ+tq+37c/n+7LfBzsMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDACSj/f7/TrptvPlp53vv/35TLue2+a7TPv807Z/f0+zwwAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIPl8LTftPP1p8xumzSM5bdrz2T4f4qnt17/9fr8Pf3/tMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAAmDEP4/T57NvnN2w3bR7Aabfd7/bv49P3ddv8mKfsMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASD7e7/frJPMDftbp8/enva9p8wa2P5/T13/6eqbd7/b1/JQdBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAyedrmO3nxT817bz+07bPS5j2+dtNu99p1/M1bP3YYQCQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAsHMexvZ5EtPO07/tfk+vB/Mzdn0fn9r+/E+zwwAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEA4I55GPze8w9Ozxsw32LX/U77/K/l7/cpOwwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLBACARDAASwQAgEQwAEsEAIBEMABLzMPhP5wc8dfrzn7rtfk+77Xl+LZ+fYYcBQCIYACSCAUAiGAAkggFAIhgAJIIBQCIYACSCAUAiGAAkggFAIhgAJIIBQCIYACSCAcAd8zCmnRd/G8+f/3I9nJ4ncXp+xvfh6zn9/O0wAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMADYOQ/j9Hn0t5k2P+C2eQnT5oVMu/7T3/ftvyffw9aPHQYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAIlgAJAIBgCJYACQCAYAiWAAkAgGAMnH+/1ufwnA1ewwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAEgEA4BEMABIBAOARDAASAQDgEQwAHgVfwMAfy4b1pHQbgAAAABJRU5ErkJggg==" alt="LinkedIn"><div class="ql">LinkedIn</div><div class="qu">contato</div></div>
+        </div>
+        <div class="email">karolina.azevedo@dcc.ufmg.br</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div><b>Tide</b> — Chatbot de apoio à comunicação clínica na menopausa (RAG)</div>
+    <div>UFMG · DCC &nbsp;|&nbsp; FemTech · HealthTech · IA aplicada</div>
+  </div>
+</div>
+</body>
+</html>
