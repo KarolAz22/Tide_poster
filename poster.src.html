@@ -6,9 +6,10 @@
 <style>
   @page { size: 841mm 1189mm; margin: 0; }
   :root{
-    --navy:#12315C; --blue:#2463A6; --blue2:#3E7FC1; --sky:#E9F1FA; --sky2:#DCE9F7;
-    --ink:#1D2733; --gray:#51606E; --line:#CBD7E4; --bg:#EEF3F9; --white:#fff;
-    --green:#2E7D52; --green-s:#E4F1EA; --red:#B0463A; --red-s:#F6E7E4; --amber:#B7791F;
+    --navy:#0A4A55; --blue:#0F6E7E; --blue2:#12707F; --sky:#E7F3F2; --sky2:#CFE6E3;
+    --ink:#16282D; --gray:#3C4D52; --line:#D8E4E2; --bg:#FFFFFF; --white:#fff;
+    --green:#2E9E6B; --green-s:#E4F4EC; --red:#C8475F; --red-s:#FCE7EB; --amber:#B7791F;
+    --coral:#E85D75; --coral-deep:#C8475F; --coral-soft:#FCE7EB;
   }
   *{box-sizing:border-box; margin:0; padding:0;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;}
@@ -20,27 +21,26 @@
   /* ---------- HEADER ---------- */
   .header{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14mm;
     padding-bottom:11mm; border-bottom:2mm solid var(--navy);}
-  .logo{border:1.2mm solid var(--navy); border-radius:4mm; padding:7mm 9mm; text-align:center; color:var(--navy);
-    background:var(--white); min-width:66mm;}
-  .logo .big{font-size:52pt; font-weight:800; letter-spacing:.5mm; line-height:1;}
-  .logo .small{font-size:16pt; color:var(--gray); margin-top:3mm; font-weight:600;}
+  .brandbox{display:flex; align-items:center; justify-content:center;}
+  .lg-ufmg{width:96mm; height:auto; display:block;}
+  .lg-sbc{height:54mm; width:auto; display:block;}
   .htitle{text-align:center;}
-  .htitle .kicker{font-size:26pt; font-weight:700; letter-spacing:3mm; text-transform:uppercase; color:var(--blue);}
+  .htitle .kicker{font-size:26pt; font-weight:700; letter-spacing:3mm; text-transform:uppercase; color:var(--coral);}
   .htitle h1{font-size:104pt; font-weight:800; color:var(--navy); line-height:.98; letter-spacing:-1mm; margin:2mm 0;}
   .htitle .sub{font-size:46pt; font-weight:600; color:var(--ink); margin-top:1mm;}
   .htitle .authors{font-size:30pt; color:var(--ink); margin-top:8mm; font-weight:600;}
   .htitle .aff{font-size:23pt; color:var(--gray); margin-top:2mm;}
 
   /* ---------- BANNER ---------- */
-  .banner{margin-top:10mm; background:var(--navy); color:#fff; border-radius:6mm;
+  .banner{margin-top:10mm; background:linear-gradient(135deg,#0C505C,#0A3F49); color:#fff; border-radius:6mm;
     display:grid; grid-template-columns:auto 1fr; align-items:center; gap:12mm; padding:9mm 16mm;}
   .banner .hero{display:flex; align-items:baseline; gap:5mm;}
-  .banner .hero .n{font-size:118pt; font-weight:800; line-height:.9; color:#8FD3B0;}
+  .banner .hero .n{font-size:118pt; font-weight:800; line-height:.9; color:#7FE3C4;}
   .banner .hero .t{font-size:30pt; font-weight:700; color:#cfe0f2; max-width:120mm;}
   .banner .more{display:flex; gap:20mm; justify-content:flex-end;}
   .banner .more .it{text-align:center;}
   .banner .more .it b{font-size:56pt; font-weight:800; display:block; line-height:1;}
-  .banner .more .it b.a{color:#F3B5AB;} .banner .more .it b.g{color:#8FD3B0;}
+  .banner .more .it b.a{color:#F3B5AB;} .banner .more .it b.g{color:#7FE3C4;}
   .banner .more .it span{font-size:22pt; color:#cfe0f2;}
   .banner .more .it .arrow{font-size:34pt; color:#9fb6d2;}
 
@@ -67,8 +67,8 @@
   .tag{font-size:22pt; font-weight:700; color:var(--blue); background:var(--sky); border:.4mm solid var(--sky2);
     border-radius:99mm; padding:3mm 7mm;}
 
-  .highlight{background:var(--sky); border:.5mm solid var(--sky2); border-radius:4mm; padding:7mm 8mm; margin-top:7mm;}
-  .highlight .lbl{font-size:22pt; font-weight:800; letter-spacing:1mm; text-transform:uppercase; color:var(--blue);}
+  .highlight{background:var(--coral-soft); border:.5mm solid #F3CDD5; border-radius:4mm; padding:7mm 8mm; margin-top:7mm;}
+  .highlight .lbl{font-size:22pt; font-weight:800; letter-spacing:1mm; text-transform:uppercase; color:var(--coral-deep);}
   .highlight p{font-size:29pt; margin-top:2mm;}
 
   /* flow (RAG) */
@@ -102,6 +102,7 @@
   .blk li{font-size:24pt; line-height:1.2; padding-left:8mm; position:relative; color:var(--ink);}
   .blk li::before{content:""; position:absolute; left:0; top:10pt; width:3.5mm;height:3.5mm; border-radius:50%; background:var(--blue2);}
   .blk.rev li::before{background:var(--green);}
+  .blk.vp li::before{background:#7FE3C4;}
 
   /* stack chips + arch */
   .chips{display:flex; flex-wrap:wrap; gap:4mm; margin-top:2mm;}
@@ -123,16 +124,17 @@
   .irow p{font-size:25pt; color:var(--ink); line-height:1.22;}
 
   /* stage tracker */
-  .track{display:flex; align-items:center; gap:0; margin:6mm 0 7mm;}
-  .tstep{flex:1; text-align:center;}
-  .tstep .dot{width:16mm;height:16mm;border-radius:50%; margin:0 auto 3mm; border:1mm solid var(--line);
-    background:var(--white);}
-  .tstep.done .dot{background:var(--green); border-color:var(--green);}
-  .tstep.now .dot{background:var(--blue); border-color:var(--blue);}
-  .tstep span{font-size:24pt; font-weight:700; color:var(--gray);}
-  .tstep.done span, .tstep.now span{color:var(--navy);}
-  .tline{height:2mm; flex:1; background:var(--line); margin-top:-9mm;}
-  .tline.on{background:var(--green);}
+  .track{display:flex; align-items:flex-start; gap:0; margin:6mm 0 13mm;}
+  .tstep{flex:1.25; text-align:center;}
+  .tstep .dot{width:15mm;height:15mm;border-radius:50%; margin:0 auto 3.5mm; border:1mm solid var(--line);
+    background:var(--white); display:flex; align-items:center; justify-content:center; font-size:18pt; font-weight:800; color:#fff;}
+  .tstep.done .dot{background:#6FA6A2; border-color:#6FA6A2;}
+  .tstep.next .dot{background:var(--white); border:1.4mm dashed var(--coral); color:var(--coral);}
+  .tstep .lbl{display:block; font-size:20pt; font-weight:700; color:var(--gray); line-height:1.12;}
+  .tstep.next .lbl{color:var(--coral-deep); font-weight:800;}
+  .tstep .sub{display:block; font-size:16pt; font-weight:800; margin-top:1.5mm; color:var(--coral);}
+  .tline{height:1.8mm; flex:.8; background:#9CC0BC; margin-top:6.6mm; border-radius:2mm;}
+  .tline.future{background:transparent; border:0; border-top:1.4mm dashed var(--coral); margin-top:7.4mm;}
 
   /* contact / QR */
   .qrs{display:flex; gap:7mm; margin-top:4mm; justify-content:space-between;}
@@ -152,7 +154,7 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="logo"><div class="big">UFMG</div><div class="small">DCC · UFMG</div></div>
+    <div class="brandbox"><img class="lg-ufmg" src="__LOGO_UFMG__" alt="UFMG"></div>
     <div class="htitle">
       <div class="kicker">FemTech · HealthTech · IA aplicada</div>
       <h1>Tide</h1>
@@ -160,7 +162,7 @@
       <div class="authors">Karolina Azevedo¹ · Mirella M. Moro¹ · Michele A. Brandão¹ · Letícia Machado²</div>
       <div class="aff">¹ Universidade Federal de Minas Gerais (UFMG / DCC) &nbsp;·&nbsp; ² Universidade Federal do Rio Grande do Sul (UFRGS)</div>
     </div>
-    <div class="logo"><div class="big">SBC</div><div class="small">Sociedade Brasileira<br>de Computação</div></div>
+    <div class="brandbox"><img class="lg-sbc" src="__LOGO_SBC__" alt="SBC"></div>
   </div>
 
   <!-- RESULT BANNER -->
@@ -181,7 +183,7 @@
     <!-- ===== COLUMN 1 ===== -->
     <div class="col">
       <div class="card">
-        <div class="sec-h"><div class="num">1</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><h2>Problema</h2></div></div>
+        <div class="sec-h"><div class="num">1</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9.5" x2="12" y2="13.6"/><circle cx="12" cy="16.9" r="1.15" fill="#0F6E7E" stroke="none"/></svg></span><h2>Problema</h2></div></div>
         <ul class="pts">
           <li>A menopausa afeta a qualidade de vida de <b class="k">milhões de mulheres</b>.</li>
           <li>No Brasil, falta informação confiável em português e a comunicação com profissionais de saúde é difícil — gerando <b class="k">assimetria de informação</b>.</li>
@@ -191,7 +193,7 @@
       </div>
 
       <div class="card">
-        <div class="sec-h"><div class="num">2</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></span><h2>Solução</h2></div></div>
+        <div class="sec-h"><div class="num">2</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></span><h2>Solução</h2></div></div>
         <ul class="pts">
           <li><b class="k">Tide</b>: chatbot em português-BR baseado em <b class="k">RAG</b> (Geração Aumentada por Recuperação).</li>
           <li>Respostas ancoradas em <b class="k">diretrizes oficiais</b> (FEBRASGO, Ministério da Saúde) com <b class="k">fontes rastreáveis</b>.</li>
@@ -213,16 +215,16 @@
     <!-- ===== COLUMN 2 ===== -->
     <div class="col">
       <div class="card">
-        <div class="sec-h"><div class="num">3</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><h2>Proposta de Valor</h2></div></div>
+        <div class="sec-h"><div class="num">3</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><h2>Proposta de Valor</h2></div></div>
         <div class="vgrid">
-          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 5.6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><h4>Para quem</h4></div><p>Mulheres no climatério, profissionais de saúde, clínicas, planos de saúde e empresas.</p></div>
-          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 4 2 7h10c0-3 2-4 2-7a7 7 0 0 0-7-7zM9 22h6"/></svg></span><h4>Qual dor resolve</h4></div><p>Desinformação, insegurança e consultas pouco produtivas por falta de preparo.</p></div>
-          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><h4>Por que é melhor</h4></div><p>Confiável, rastreável, em pt-BR e com relatório clínico — reduz alucinações (93% vs 48%).</p></div>
+          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 5.6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><h4>Para quem</h4></div><p>Mulheres no climatério, profissionais de saúde, clínicas, planos de saúde e empresas.</p></div>
+          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 4 2 7h10c0-3 2-4 2-7a7 7 0 0 0-7-7zM9 22h6"/></svg></span><h4>Qual dor resolve</h4></div><p>Desinformação, insegurança e consultas pouco produtivas por falta de preparo.</p></div>
+          <div class="vblock"><div class="vh"><span class="vic"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><h4>Por que é melhor</h4></div><p>Confiável, rastreável, em pt-BR e com relatório clínico — reduz alucinações (93% vs 48%).</p></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="sec-h"><div class="num">5</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM2 10h2M2 14h2M20 10h2M20 14h2M10 2v2M14 2v2M10 20v2M14 20v2"/></svg></span><h2>Tecnologia</h2></div></div>
+        <div class="sec-h"><div class="num">4</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM2 10h2M2 14h2M20 10h2M20 14h2M10 2v2M14 2v2M10 20v2M14 20v2"/></svg></span><h2>Tecnologia</h2></div></div>
         <div class="chips"><span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">LangChain</span><span class="chip">Embeddings</span><span class="chip">Banco vetorial</span><span class="chip">LLM</span></div>
         <div class="arch">
           <div class="anode">Usuária <small>pergunta em pt-BR</small></div>
@@ -237,44 +239,46 @@
       </div>
 
       <div class="card">
-        <div class="sec-h"><div class="num">6</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><h2>Impacto</h2></div></div>
-        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><div><h4>Social</h4><p>Democratiza a informação de saúde, empodera a paciente e reduz a desinformação.</p></div></div>
-        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg></span><div><h4>Econômico</h4><p>Consultas mais eficientes; mercado de FemTech em crescimento.</p></div></div>
-        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5zM6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span><div><h4>Educacional</h4><p>Promove letramento em saúde e autocuidado.</p></div></div>
-        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span><div><h4>Escalabilidade</h4><p>Base atualizável e expansível a novos temas de saúde da mulher.</p></div></div>
+        <div class="sec-h"><div class="num">5</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><h2>Impacto</h2></div></div>
+        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><div><h4>Social</h4><p>Democratiza a informação de saúde, empodera a paciente e reduz a desinformação.</p></div></div>
+        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg></span><div><h4>Econômico</h4><p>Consultas mais eficientes; mercado de FemTech em crescimento.</p></div></div>
+        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5zM6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span><div><h4>Educacional</h4><p>Promove letramento em saúde e autocuidado.</p></div></div>
+        <div class="irow"><span class="iic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span><div><h4>Escalabilidade</h4><p>Base atualizável e expansível a novos temas de saúde da mulher.</p></div></div>
       </div>
     </div>
 
     <!-- ===== COLUMN 3 ===== -->
     <div class="col">
       <div class="card">
-        <div class="sec-h"><div class="num">4</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/></svg></span><h2>Modelo de Negócio</h2></div></div>
+        <div class="sec-h"><div class="num">6</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/></svg></span><h2>Modelo de Negócio</h2></div></div>
         <div class="bmc">
-          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 5.6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><h4>Clientes</h4></div><ul><li>Mulheres no climatério; profissionais de saúde</li><li>Clínicas e planos de saúde (B2B)</li><li>Empresas (saúde corporativa); SUS e ONGs</li></ul></div>
+          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 5.5a3 3 0 0 1 0 5.6M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span><h4>Clientes</h4></div><ul><li>Mulheres no climatério; profissionais de saúde</li><li>Clínicas e planos de saúde (B2B)</li><li>Empresas (saúde corporativa); SUS e ONGs</li></ul></div>
           <div class="blk vp"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#eaf2fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 7v6c0 5 8 9 8 9s8-4 8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><h4>Proposta de valor</h4></div><ul><li>Informação confiável e rastreável em pt-BR</li><li>Relatório clínico em PDF para a consulta</li><li>Segurança: mitiga alucinações (93% vs 48%)</li></ul></div>
-          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4zM2 20h20M8 8h8M8 12h5"/></svg></span><h4>Canais</h4></div><ul><li>App web (e futuro mobile)</li><li>Parcerias com clínicas, planos e RH de empresas</li></ul></div>
-          <div class="blk rev"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 14.5c0 1.2 1.1 2 2.5 2s2.5-.7 2.5-2-1.1-1.7-2.5-2-2.5-.8-2.5-2 1.1-2 2.5-2 2.5.8 2.5 2"/></svg></span><h4>Receita</h4></div><ul><li>SaaS B2B (clínicas, planos, empresas)</li><li>Parcerias institucionais; freemium ético</li></ul></div>
-          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#12315C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8v8H8z"/></svg></span><h4>Custos</h4></div><ul><li>Infraestrutura de IA; curadoria e validação clínica</li><li>Desenvolvimento e conformidade (LGPD)</li></ul></div>
+          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4zM2 20h20M8 8h8M8 12h5"/></svg></span><h4>Canais</h4></div><ul><li>App web (e futuro mobile)</li><li>Parcerias com clínicas, planos e RH de empresas</li></ul></div>
+          <div class="blk rev"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 14.5c0 1.2 1.1 2 2.5 2s2.5-.7 2.5-2-1.1-1.7-2.5-2-2.5-.8-2.5-2 1.1-2 2.5-2 2.5.8 2.5 2"/></svg></span><h4>Receita</h4></div><ul><li>SaaS B2B (clínicas, planos, empresas)</li><li>Parcerias institucionais; freemium ético</li></ul></div>
+          <div class="blk"><div class="bt"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8 8h8v8H8z"/></svg></span><h4>Custos</h4></div><ul><li>Infraestrutura de IA; curadoria e validação clínica</li><li>Desenvolvimento</li></ul></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="sec-h"><div class="num">7</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22V4a1 1 0 0 1 1-1h12l-2 4 2 4H6"/></svg></span><h2>Estágio</h2></div></div>
+        <div class="sec-h"><div class="num">7</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22V4a1 1 0 0 1 1-1h12l-2 4 2 4H6"/></svg></span><h2>Estágio</h2></div></div>
         <div class="track">
-          <div class="tstep done"><div class="dot"></div><span>Ideia</span></div>
-          <div class="tline on"></div>
-          <div class="tstep done"><div class="dot"></div><span>Protótipo</span></div>
-          <div class="tline on"></div>
-          <div class="tstep now"><div class="dot"></div><span>Validado</span></div>
+          <div class="tstep done"><div class="dot">✓</div><span class="lbl">Ideia</span></div>
+          <div class="tline"></div>
+          <div class="tstep done"><div class="dot">✓</div><span class="lbl">Protótipo</span></div>
+          <div class="tline"></div>
+          <div class="tstep done"><div class="dot">✓</div><span class="lbl">Validação técnica</span></div>
+          <div class="tline future"></div>
+          <div class="tstep next"><div class="dot"></div><span class="lbl">Validação clínica</span><span class="sub">próxima etapa</span></div>
         </div>
-        <ul class="pts"><li><b class="k">Protótipo funcional</b>, validado academicamente (93% de acerto, 0 respostas inseguras).</li><li>Próximos passos: validação clínica (FEBRASGO), LGPD e piloto.</li></ul>
+        <ul class="pts"><li><b class="k">Arquitetura validada academicamente</b> — 93% de acerto e 0 respostas inseguras.</li><li><b class="k">Próxima etapa:</b> validação com especialistas e com mulheres usuárias.</li></ul>
       </div>
 
       <div class="card">
-        <div class="sec-h"><div class="num">8</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2463A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM21 14v7M17 21h4M17 17h.01"/></svg></span><h2>Contato</h2></div></div>
+        <div class="sec-h"><div class="num">8</div><div class="ttl"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F6E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM21 14v7M17 21h4M17 17h.01"/></svg></span><h2>Contato</h2></div></div>
         <div class="qrs">
           <div class="qrc"><img src="__QR_DEMO__" alt="Demo"><div class="ql">Protótipo</div><div class="qu">demo ao vivo</div></div>
-          <div class="qrc"><img src="__QR_GITHUB__" alt="GitHub"><div class="ql">Projeto</div><div class="qu">GitHub</div></div>
+          <div class="qrc"><img src="__QR_PROJETO__" alt="Projeto"><div class="ql">Projeto</div><div class="qu">landing page</div></div>
           <div class="qrc"><img src="__QR_LINKEDIN__" alt="LinkedIn"><div class="ql">LinkedIn</div><div class="qu">contato</div></div>
         </div>
         <div class="email">karolina.azevedo@dcc.ufmg.br</div>

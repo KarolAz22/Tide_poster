@@ -158,7 +158,7 @@
   .phase h3{font-size:19px;margin:6px 0 12px;}
   .phase ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
   .phase li{font-size:14px;padding-left:22px;position:relative;color:var(--body);}
-  .phase li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800;}
+  .phase li::before{content:"›";position:absolute;left:0;color:var(--coral);font-weight:800;}
   .phase .badge{position:absolute;top:0;right:0;background:var(--teal-soft);color:var(--teal);font-size:11px;
     font-weight:800;padding:6px 12px;border-bottom-left-radius:12px;}
 
@@ -171,6 +171,7 @@
   .member{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center;}
   .member .av{width:62px;height:62px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
     font-size:24px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--teal),var(--coral));}
+  .member .photo{width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:3px solid var(--teal-soft);}
   .member h4{font-size:17px;} .member p{font-size:13.5px;color:var(--muted);margin-top:4px;}
 
   /* final cta */
@@ -221,7 +222,7 @@
       <div>
         <span class="eyebrow" style="color:#ff9fb0">FemTech · HealthTech · IA aplicada</span>
         <h1>Menopausa Informada: um chatbot baseado em <span style="color:#7fe3c4">evidências</span>.</h1>
-        <p class="tag"><span class="tide">Tide<span class="d"></span></span> é um chatbot em português-BR que responde com base em diretrizes oficiais — e mostra as fontes.</p>
+        <p class="tag"><span class="tide">Tide<span class="d"></span></span> é um chatbot em português-BR que responde com base em diretrizes oficiais.</p>
         <div class="cta">
           <a class="btn btn-primary" href="__PROTO_URL__" target="_blank" rel="noopener">Experimente o protótipo</a>
           <a class="btn btn-white" href="#solucao">Como funciona</a>
@@ -307,20 +308,21 @@
   <div class="wrap">
     <span class="eyebrow">Diferencial competitivo</span>
     <h2 class="sec-title">O que separa o Tide das alternativas</h2>
-    <p class="sec-intro">Soluções comerciais existem, mas costumam ser caixas-pretas e fora do contexto brasileiro. O diferencial do Tide é a combinação de transparência, fontes oficiais curadas e pt-BR.</p>
+    <p class="sec-intro">Comparação com as principais soluções da área. O diferencial do Tide não é um recurso isolado, e sim a combinação que nenhuma outra reúne: fontes oficiais curadas, relatório clínico e contexto brasileiro.</p>
     <div class="tablewrap">
       <table>
         <thead><tr><th>Recurso</th><th class="tide">Tide</th><th>Sofia AI</th><th>The Menopause Coach</th><th>IaraMed</th></tr></thead>
         <tbody>
-          <tr><td class="feat">Fontes oficiais curadas (FEBRASGO, MS)</td><td class="tcol"><span class="yes">●</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="partial">parcial</span></td></tr>
-          <tr><td class="feat">Transparência e fontes rastreáveis</td><td class="tcol"><span class="yes">●</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
-          <tr><td class="feat">Português-BR e contexto nacional</td><td class="tcol"><span class="yes">●</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">●</span></td></tr>
+          <tr><td class="feat">Gratuito</td><td class="tcol"><span class="yes">●</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">●</span></td></tr>
+          <tr><td class="feat">IA conversacional</td><td class="tcol"><span class="yes">●</span></td><td><span class="yes">●</span></td><td><span class="yes">●</span></td><td><span class="yes">●</span></td></tr>
+          <tr><td class="feat">Fontes curadas (diretrizes oficiais)</td><td class="tcol"><span class="yes">●</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><td class="feat">Transparência (fontes rastreáveis)</td><td class="tcol"><span class="yes">●</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">●</span></td></tr>
           <tr><td class="feat">Relatório clínico para a consulta</td><td class="tcol"><span class="yes">●</span></td><td><span class="yes">●</span></td><td><span class="yes">●</span></td><td><span class="no">—</span></td></tr>
-          <tr><td class="feat">Arquitetura aberta (não caixa-preta)</td><td class="tcol"><span class="yes">●</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+          <tr><td class="feat">Contexto brasileiro (pt-BR)</td><td class="tcol"><span class="yes">●</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">●</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:14px;color:var(--muted);margin-top:14px">Nenhuma alternativa reúne, ao mesmo tempo, fontes oficiais curadas, transparência e contexto brasileiro.</p>
+    <p style="font-size:14px;color:var(--muted);margin-top:14px">Só o Tide reúne, ao mesmo tempo, <b>fontes oficiais curadas, relatório clínico e contexto brasileiro</b> — a combinação que nenhuma alternativa oferece junta.</p>
   </div>
 </section>
 
@@ -367,6 +369,23 @@
   </div>
 </section>
 
+<!-- RECEITA / ROI -->
+<section id="receita" style="background:var(--teal-soft)">
+  <div class="wrap">
+    <span class="eyebrow">Modelo de receita</span>
+    <h2 class="sec-title">Como o Tide gera receita — e devolve valor</h2>
+    <p class="sec-intro">SaaS B2B recorrente, com preço ancorado no valor: o Tide custa uma fração do que economiza ou gera para o cliente. Os valores abaixo são hipóteses iniciais, a validar nos primeiros pilotos.</p>
+    <div class="grid g3" style="margin-top:36px">
+      <div class="card"><div class="ico">🏥</div><h3>Clínicas &amp; consultórios</h3><p>A paciente chega com o relatório pronto → consulta mais curta e resolutiva, e mais fidelização.<br><b style="color:var(--ink)">Assinatura por profissional: ~R$ 200–500/mês.</b></p></div>
+      <div class="card"><div class="ico">🛡️</div><h3>Planos de saúde</h3><p>Menos consultas redundantes e melhor manejo → contenção de custo e retenção da beneficiária.<br><b style="color:var(--ink)">Por beneficiária (40–65): ~R$ 0,50–2/mês</b> — ticket baixo, volume alto.</p></div>
+      <div class="card coral"><div class="ico">🏢</div><h3>Empresas</h3><p>Menos absenteísmo e apoio às colaboradoras 45+ → retenção de talentos.<br><b style="color:var(--ink)">Por colaboradora: ~R$ 3–6/mês</b>, ou pacote por porte.</p></div>
+    </div>
+    <div style="margin-top:26px;background:var(--coral-soft);border:1px solid #f3cdd5;border-radius:16px;padding:22px 26px">
+      <p style="font-size:16px;color:var(--ink);margin:0"><b>O caso mais fácil de provar:</b> substituir uma colaboradora custa caro — estimativas de mercado apontam de <b>meio a mais de um salário anual</b>, somando recrutamento, treinamento e produtividade perdida. Ou seja: evitar <b>um único desligamento</b> ligado à menopausa já paga o Tide no ano inteiro.</p>
+    </div>
+  </div>
+</section>
+
 <!-- PLANO -->
 <section id="plano">
   <div class="wrap">
@@ -375,7 +394,7 @@
     <p class="sec-intro">Estágio atual: <b>protótipo funcional validado academicamente</b> (93% de acerto, 0 respostas inseguras). Os próximos passos levam o Tide à prática clínica e ao mercado.</p>
     <div class="road">
       <div class="phase"><span class="badge">Estamos aqui ▸</span><span class="when">Curto prazo · 0–6 meses</span><h3>Validação clínica</h3><ul>
-        <li>Validação com profissionais (FEBRASGO)</li><li>Adequação à LGPD</li>
+        <li>Validação com profissionais</li>
         <li>Piloto em clínica / UBS</li><li>Coleta de feedback real de usuárias</li></ul></div>
       <div class="phase"><span class="when">Médio prazo · 6–18 meses</span><h3>Produto e parcerias</h3><ul>
         <li>App mobile</li><li>Ampliar a base (saúde da mulher)</li>
@@ -386,11 +405,12 @@
     </div>
 
     <h3 style="margin-top:46px;font-size:20px">Métricas de sucesso</h3>
+    <p style="font-size:15px;color:var(--muted);margin-top:6px">Como vamos medir, na prática, se o Tide está funcionando:</p>
     <div class="metrics">
-      <div class="metric"><b>Acerto & segurança</b><span>% correto · 0 inseguras</span></div>
-      <div class="metric"><b>Adoção</b><span>usuárias · relatórios gerados</span></div>
-      <div class="metric"><b>Satisfação</b><span>NPS · retorno</span></div>
-      <div class="metric"><b>Parcerias</b><span>clínicas e instituições</span></div>
+      <div class="metric"><b>Qualidade e segurança</b><span>% de respostas corretas e seguras</span></div>
+      <div class="metric"><b>Adoção</b><span>quantas mulheres usam e quantos relatórios clínicos são gerados</span></div>
+      <div class="metric"><b>Satisfação</b><span>o quanto as usuárias recomendam o Tide e voltam a usar</span></div>
+      <div class="metric"><b>Parcerias</b><span>nº de clínicas e instituições que adotam a solução</span></div>
     </div>
   </div>
 </section>
@@ -405,10 +425,10 @@
       <div class="card coral"><div class="ico">❤️</div><h3>Impacto social</h3><p>Democratiza o acesso à informação de saúde, reduz a desinformação e a ansiedade, e <b>empodera a paciente</b>. A transparência e a rastreabilidade tornam o uso de IA mais ético e seguro.</p></div>
     </div>
     <div class="team">
-      <div class="member"><div class="av">KA</div><h4>Karolina Azevedo</h4><p>Autora e desenvolvedora · Mestranda em Ciência da Computação (UFMG)</p></div>
-      <div class="member"><div class="av">MM</div><h4>Mirella M. Moro</h4><p>Orientação · UFMG/DCC</p></div>
-      <div class="member"><div class="av">MB</div><h4>Michele A. Brandão</h4><p>Co-orientação · UFMG</p></div>
-      <div class="member"><div class="av">LM</div><h4>Letícia Machado</h4><p>Colaboradora · UFRGS</p></div>
+      <div class="member"><img class="photo" src="img/karolina.jpg" alt="Karolina Azevedo"><h4>Karolina Azevedo</h4><p>Autora e desenvolvedora · Mestranda em Ciência da Computação (UFMG)</p></div>
+      <div class="member"><img class="photo" src="img/mirella.jpg" alt="Mirella M. Moro"><h4>Mirella M. Moro</h4><p>Orientação · UFMG/DCC</p></div>
+      <div class="member"><img class="photo" src="img/michele.jpg" alt="Michele A. Brandão"><h4>Michele A. Brandão</h4><p>Co-orientação · UFMG</p></div>
+      <div class="member"><img class="photo" src="img/leticia.jpg" alt="Letícia Machado"><h4>Letícia Machado</h4><p>Colaboradora · UFRGS</p></div>
     </div>
   </div>
 </section>
@@ -419,7 +439,7 @@
     <span class="eyebrow" style="color:#7fe3c4">Experimente</span>
     <h2 class="sec-title">Converse com o Tide agora</h2>
     <p class="sec-intro" style="color:#bcdedd;margin-left:auto;margin-right:auto;text-align:center">Aponte a câmera do celular para o QR ou abra o protótipo no navegador.</p>
-    <div class="qrwrap"><img src="__QR_PROTO__" alt="QR code do protótipo do Tide"></div>
+    <div class="qrwrap"><img src="img/qr_prototipo.png" alt="QR code do protótipo do Tide"></div>
     <div class="ctline">
       <a class="btn btn-primary" href="__PROTO_URL__" target="_blank" rel="noopener">Abrir o protótipo</a>
     </div>
